@@ -6,19 +6,19 @@ const gameState = {
     isGameOver: false
 };
 
-// Balloon positions (arranged in a 3x3 grid pattern, moved further back)
+// Balloon positions (arranged in a 3x3 grid pattern with reduced vertical spacing)
 const balloonPositions = [
     // Bottom row
-    { position: '-3 -3 -2', rotation: '0 0 0' },
-    { position: '-1.5 -3 -2', rotation: '0 0 0' },
-    { position: '0 -3 -2', rotation: '0 0 0' },
+    { position: '-1.5 -1.5 -2', rotation: '0 0 0' },
+    { position: '-0.75 -1.5 -2', rotation: '0 0 0' },
+    { position: '0 -1.5 -2', rotation: '0 0 0' },
     // Middle row
-    { position: '-3 -1 -2', rotation: '0 0 0' },
-    { position: '-1.5 -1 -2', rotation: '0 0 0' },
-    { position: '0 -1 -2', rotation: '0 0 0' },
+    { position: '-1.5 -0.5 -2', rotation: '0 0 0' },
+    { position: '-0.75 -0.5 -2', rotation: '0 0 0' },
+    { position: '0 -0.5 -2', rotation: '0 0 0' },
     // Top row
-    { position: '-3 0.5 -2', rotation: '0 0 0' },
     { position: '-1.5 0.5 -2', rotation: '0 0 0' },
+    { position: '-0.75 0.5 -2', rotation: '0 0 0' },
     { position: '0 0.5 -2', rotation: '0 0 0' }
 ];
 
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             balloon.setAttribute('src', '#balloon-model');
             balloon.setAttribute('position', pos.position);
             balloon.setAttribute('rotation', pos.rotation);
-            balloon.setAttribute('scale', '3 3 3');
+            balloon.setAttribute('scale', '2 2 2');
             balloon.setAttribute('class', 'clickable');
             
             // Removed animation to make balloons stable
