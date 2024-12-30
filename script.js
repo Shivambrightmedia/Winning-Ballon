@@ -49,9 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             balloon.setAttribute('scale', '2 2 2');
             balloon.setAttribute('class', 'clickable');
             
-            // Add click handler with animation
-            balloon.addEventListener('click', function() {
-                // Add shrinking animation
+            // Add both click and touchstart events
+            const destroyBalloon = function() {
                 balloon.setAttribute('animation', {
                     property: 'scale',
                     to: '0 0 0',
@@ -59,11 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     easing: 'easeInQuad'
                 });
 
-                // Remove balloon after animation
                 setTimeout(() => {
-                    balloon.parentNode.removeChild(balloon);
+                    if (balloon.parentNode) {
+                        balloon.parentNode.removeChild(balloon);
+                    }
                 }, 300);
-            });
+            };
+
+            balloon.addEventListener('click', destroyBalloon);
+            balloon.addEventListener('touchstart', destroyBalloon);
+            balloon.addEventListener('mousedown', destroyBalloon);
             
             balloonContainer.appendChild(balloon);
             gameState.balloons.push(balloon);
