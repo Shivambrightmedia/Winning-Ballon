@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             balloon.addEventListener('click', destroyBalloon);
-            balloon.addEventListener('touchstart', destroyBalloon);
+            balloon.addEventListener('ontouchstart', destroyBalloon);
             balloon.addEventListener('mousedown', destroyBalloon);
             
             balloonContainer.appendChild(balloon);
