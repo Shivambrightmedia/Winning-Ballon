@@ -32,6 +32,7 @@
                 </a-assets>
 
                 <a-camera position="0 0 0" look-controls="enabled: false" 
+                    raycaster="objects: .clickable" 
                     cursor="fuse: false; rayOrigin: mouse;">
                 </a-camera>
 
@@ -52,7 +53,7 @@
     <script src="script.js"></script>
 
     <div style="position: fixed; bottom: 10px; right: 10px; z-index: 800;">
-        <button id="resetButton" style="padding: 80px 100px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-size: 16px;">
+        <button id="resetButton" style="padding: 35px 35px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-size: 16px;">
             Reset Game
         </button>
     </div>
