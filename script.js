@@ -49,21 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
             balloon.setAttribute('scale', '2 2 2');
             balloon.setAttribute('class', 'clickable');
             
-            balloon.addEventListener('click', () => handleBalloonClick(index, balloon));
+            // Add click handler with animation
+            balloon.addEventListener('click', function() {
+                // Add shrinking animation
+                balloon.setAttribute('animation', {
+                    property: 'scale',
+                    to: '0 0 0',
+                    dur: 300,
+                    easing: 'easeInQuad'
+                });
+
+                // Remove balloon after animation
+                setTimeout(() => {
+                    balloon.parentNode.removeChild(balloon);
+                }, 300);
+            });
             
             balloonContainer.appendChild(balloon);
             gameState.balloons.push(balloon);
         });
-    }
-
-    function handleBalloonClick(index, balloon) {
-        if (gameState.isGameOver) return;
-
-        // Pop balloon animation and removal
-        balloon.setAttribute('scale', '0 0 0');
-        setTimeout(() => {
-            balloon.remove();
-        }, 300);
     }
 
     // Reset button click handler
