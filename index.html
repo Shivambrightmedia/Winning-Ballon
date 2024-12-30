@@ -14,8 +14,11 @@
     <div class="container">
         <!-- AR container -->
         <div class="ar-container">
-            <a-scene embedded mindar-image="imageTargetSrc: ./targets.mind;" color-space="sRGB"
-                renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+            <a-scene embedded 
+                mindar-image="imageTargetSrc: ./targets.mind; filterMinCF:0.0001; filterBeta: 0.001;" 
+                color-space="sRGB"
+                renderer="colorManagement: true, physicallyCorrectLights; antialias: true"
+                vr-mode-ui="enabled: false"
                 device-orientation-permission-ui="enabled: false">
 
 

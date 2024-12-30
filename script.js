@@ -6,20 +6,20 @@ const gameState = {
     isGameOver: false
 };
 
-// Balloon positions (arranged in a 3x3 grid pattern, moved down)
+// Balloon positions (arranged in a 3x3 grid pattern, moved further back)
 const balloonPositions = [
     // Bottom row
-    { position: '-1 -1 0', rotation: '0 0 0' },
-    { position: '0 -1 0', rotation: '0 0 0' },
-    { position: '1 -1 0', rotation: '0 0 0' },
+    { position: '-3 -3 -2', rotation: '0 0 0' },
+    { position: '-1.5 -3 -2', rotation: '0 0 0' },
+    { position: '0 -3 -2', rotation: '0 0 0' },
     // Middle row
-    { position: '-1 0 0', rotation: '0 0 0' },
-    { position: '0 0 0', rotation: '0 0 0' },
-    { position: '1 0 0', rotation: '0 0 0' },
+    { position: '-3 -1 -2', rotation: '0 0 0' },
+    { position: '-1.5 -1 -2', rotation: '0 0 0' },
+    { position: '0 -1 -2', rotation: '0 0 0' },
     // Top row
-    { position: '-1 1 0', rotation: '0 0 0' },
-    { position: '0 1 0', rotation: '0 0 0' },
-    { position: '1 1 0', rotation: '0 0 0' }
+    { position: '-3 0.5 -2', rotation: '0 0 0' },
+    { position: '-1.5 0.5 -2', rotation: '0 0 0' },
+    { position: '0 0.5 -2', rotation: '0 0 0' }
 ];
 
 // Wait for scene to load
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.balloons = [];
         
         // Randomly select winning balloon
-        gameState.winningBalloonIndex = Math.floor(Math.random() * 6);
+        gameState.winningBalloonIndex = Math.floor(Math.random() * 9);
 
         // Create balloons
         balloonPositions.forEach((pos, index) => {
@@ -50,17 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
             balloon.setAttribute('src', '#balloon-model');
             balloon.setAttribute('position', pos.position);
             balloon.setAttribute('rotation', pos.rotation);
-            balloon.setAttribute('scale', '0.9 0.9 0.9');
+            balloon.setAttribute('scale', '3 3 3');
             balloon.setAttribute('class', 'clickable');
-            balloon.setAttribute('animation', {
-                property: 'position',
-                dir: 'alternate',
-                dur: 1000,
-                easing: 'easeInOutQuad',
-                loop: true,
-                from: pos.position,
-                to: `${pos.position.split(' ')[0]} ${parseFloat(pos.position.split(' ')[1]) + 0.1} ${pos.position.split(' ')[2]}`
-            });
+            
+            // Removed animation to make balloons stable
 
             // Add click handler
             balloon.addEventListener('click', () => handleBalloonClick(index, balloon));
