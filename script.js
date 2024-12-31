@@ -1,13 +1,13 @@
 AFRAME.registerComponent('balloon-handler', {
-    init: function() {
-        this.el.setAttribute('isClicked', false);
-        
+    init: function () {
+        this.el.setAttribute('isClicked', false); // Initialize click state
+
         this.el.addEventListener('click', () => {
             if (this.el.getAttribute('isClicked') || gameState.isGameOver) return;
-            
-            this.el.setAttribute('isClicked', true);
-            console.log('balloon clicked');
-            
+
+            this.el.setAttribute('isClicked', true); // Mark as clicked
+            console.log('Balloon clicked!');
+
             const balloonIndex = gameState.balloons.indexOf(this.el);
 
             if (balloonIndex === gameState.winningBalloonIndex) {
@@ -28,6 +28,7 @@ AFRAME.registerComponent('balloon-handler', {
                 }
             }
 
+            // Animate balloon popping
             this.el.setAttribute('animation', {
                 property: 'scale',
                 to: '0 0 0',
@@ -54,22 +55,18 @@ const gameState = {
 
 // Balloon positions
 const balloonPositions = [
-    // Bottom row
     { position: '-1.5 -1.5 -2', rotation: '0 0 0' },
     { position: '-0.75 -1.5 -2', rotation: '0 0 0' },
     { position: '0 -1.5 -2', rotation: '0 0 0' },
-    // Middle row
     { position: '-1.5 -0.5 -2', rotation: '0 0 0' },
     { position: '-0.75 -0.5 -2', rotation: '0 0 0' },
     { position: '0 -0.5 -2', rotation: '0 0 0' },
-    // Top row
     { position: '-1.5 0.5 -2', rotation: '0 0 0' },
     { position: '-0.75 0.5 -2', rotation: '0 0 0' },
     { position: '0 0.5 -2', rotation: '0 0 0' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    const sceneEl = document.querySelector('a-scene');
     const balloonContainer = document.querySelector('#balloon-container');
     const resetButton = document.querySelector('#resetButton');
 
@@ -85,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.attempts = 3;
         gameState.isGameOver = false;
         gameState.balloons = [];
-        gameState.winningBalloonIndex = Math.floor(Math.random() * 9);
-        
+        gameState.winningBalloonIndex = Math.floor(Math.random() * balloonPositions.length);
+
         console.log('Game initialized! Find the winning balloon!');
         console.log(`You have ${gameState.attempts} attempts.`);
 
@@ -96,10 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             balloon.setAttribute('position', pos.position);
             balloon.setAttribute('rotation', pos.rotation);
             balloon.setAttribute('scale', '2 2 2');
-            balloon.setAttribute('class', 'clickable');
-            balloon.setAttribute('balloon-handler', '');
-            balloon.setAttribute('isClicked', false);
-            
+            balloon.setAttribute('class', 'clickable'); // Add clickable class
+            balloon.setAttribute('balloon-handler', ''); // Attach handler
             balloonContainer.appendChild(balloon);
             gameState.balloons.push(balloon);
         });
@@ -107,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset button click handler
     resetButton.addEventListener('click', () => {
-        balloonContainer.innerHTML = '';
+        balloonContainer.innerHTML = ''; // Clear all balloons
         gameState.balloons = [];
         initializeGame();
         console.log('Game reset! Try again!');
